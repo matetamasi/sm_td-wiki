@@ -15,7 +15,7 @@ Possible structure to describe macros behaviours is nested switch-cases. Top lev
 ```c
 void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
     switch (keycode) {
-        case CKC_SPACE: {
+        case CUSTOM_KEYCODE_1: {
             switch (action) {
                 case SMTD_ACTION_TOUCH:
                     break; // touch action are not used in this example  
@@ -54,7 +54,7 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
                     break;
             } // end of switch (action)
             break;
-        } // end of case CKC_SPACE
+        } // end of case CUSTOM_KEYCODE_1
             
         // put all your custom keycodes here
         
