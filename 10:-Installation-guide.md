@@ -1,4 +1,4 @@
-1. Clone `sm_td.h` repository into your `keymaps/your_keymap` folder
+1. Clone `sm_td.h` repository into your `keymaps/your_keymap` folder (next to your keymap.c)
 2. Add `#include "sm_td.h"` to your `keymap.c` file
 3. Check `!process_smtd` first in your `process_record_user` function like this
 ```c
