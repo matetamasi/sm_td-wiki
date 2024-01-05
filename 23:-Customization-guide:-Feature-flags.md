@@ -68,5 +68,24 @@ That emulates QMK's Tap Dance. If SMTD_FEATURE_AGGREGATE_TAPS = true, `on_smtd_a
 
 ## SMTD_FEATURE_MODS_RECALL
 
-Since sm_td send key press a bit later after real physical key press has occurred, that may lead to unexpected behaviour with mod keys. So, if you press a regular shift key (witch are not a part of sm_td) and press
+Since sm_td send key press a bit later after real physical key press has occurred, that may lead to unexpected behaviour with mod keys. So, if you you hit `↓shift` (that is not a part of sm_td), `↓smtd_macro`, `↑shift` and `↑smtd_macro`. Actual tap of smtd_macro wouldn't be sent to OS until you physically release that key. So OS will receive that sequence: `↓shift`, `↑shift` (from physical pressing and releasing shift key), then `↓↑smtd_macro_tap_action` (after macro key release). The feature SMTD_FEATURE_MODS_RECALL (it is ON by default) is implemented just to make that macro taps more predictable while holding modifiers. Mods recall feature will re-register actual on physical pressing modifiers right before sending SMTD_ACTION_TAP. See a chart below for better explanation
 
+```
+                             | SMTD_FEATURE_MODS_RECALL = false          | SMTD_FEATURE_MODS_RECALL = true           |
+                             |                                           |                                           |
+0ms  - - - ┌—————┐ - - - - - | - - - - - - - - - - - - - - - - - - - - - | - - - - - - - - - - - - - - - - - - - - - |
+           │shift│           | press(shift)                              | press(shift)                              |
+           │ key │           |                                           |                                           |
+           │     │           |                                           |                                           |
+10ms - - - │ - - │ ┌—————┐ - | - - - - - - - - - - - - - - - - - - - - - | - - - - - - - - - - - - - - - - - - - - - |
+           │     │ │macro│   |                                           |                                           |
+           │     │ │ key │   |                                           |                                           |
+           │     │ │     │   |                                           |                                           |
+20ms - - - └—————┘ │ - - │ - | - - - - - - - - - - - - - - - - - - - - - | - - - - - - - - - - - - - - - - - - - - - |
+                   │     │   | release(shift)                            | release(shift)                            |
+                   │     │   |                                           |                                           |
+30ms - - - - - - - └—————┘ - | - - - - - - - - - - - - - - - - - - - - - | - - - - - - - - - - - - - - - - - - - - - |
+                             | on_smtd_action(macro, SMTD_ACTION_TAP, 0) | press(shift)                              |
+                             |                                           | on_smtd_action(macro, SMTD_ACTION_TAP, 0) |
+                             |                                           | release(shift)                            |
+```
