@@ -148,7 +148,7 @@ For example, you to alternate between `:`, `;` and `#` on each macro key press.
 ```c
 void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
     switch (keycode) {
-        case resposive_mt_macro_key: {                                           
+        case resposive_seq_macro_key: {                                           
             switch (action) {                                     
                 case SMTD_ACTION_TOUCH: 
                     if (tap_count > 0) {
@@ -174,3 +174,33 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
 So, the first press will send `:` and sequential presses will delete just entered symbol and send next
 
 
+## Clumsy symbol change on sequential tapping (same as QMK Tap Dance)
+
+```c
+void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
+    switch (keycode) {
+        case clumsy_seq_macro_key: {                                           
+            switch (action) {                                     
+                case SMTD_ACTION_TOUCH: 
+                    break;    
+                case SMTD_ACTION_TAP: 
+                    switch (tap_count % 3) {
+                        case 0: register_code16(KC_COLON); break;
+                        case 1: register_code16(KC_SEMICOLON); break;
+                        case 2: register_code16(KC_HASH); break;
+                        default: break;
+                    }
+                    break
+                case SMTD_ACTION_HOLD:
+                case SMTD_ACTION_RELEASE:                         
+                    break;                                        
+              } // end of switch (keycode)
+} // end of on_smtd_action function
+
+bool smtd_feature_enabled_default(uint16_t keycode, smtd_feature feature) {
+    if (keycode == clumsy_seq_macro_key && feature == SMTD_FEATURE_AGGREGATE_TAPS) return true;
+    
+    return smtd_feature_enabled_default(keycode, feature); 
+}
+```
+In this case SMTD_ACTION_TAP wouldn't be sent until sm_td is 100% sure that you have finished your tap sequence. So SMTD_ACTION_TAP will be executed exactly once for all sequence.
