@@ -11,7 +11,7 @@ This standard libraries you sometimes have to wait to make sure that QMK handles
 Core idea of that library is making decision about holding or tapping based on difference between key release. As human we don't pay much attention on a way we release a key. We are used to press keys in certain sequence but not releasing in a sequence, so we tend to hold a key for longer time then it's necessary to. For a human Seq. A and Seq. B from example below are almost the same and should be processed the same way, but standard library will interpret Seq. A as hold+tap, and Seq. B and C. as tap+tap. In contrast sm_td will interpret A. and B. as hold+tap, and C. as tap+tap.
 
 ```
-         |     Sequence A.     |     Sequence B.     |      Sequence C.    |                                 
+         |     Sequence A.     |     Sequence B.     |      Sequence C.    |
 0ms  - - | - ┌—————┐ - - - - - | - ┌—————┐ - - - - - | - ┌—————┐ - - - - - |
          |   │macro│           |   │macro│           |   │macro│           |
          |   │ key │           |   │ key │           |   │ key │           |
@@ -23,14 +23,14 @@ Core idea of that library is making decision about holding or tapping based on d
          |   │     │ │     │   |   │     │ │     │   |   │     │ │     │   |
          |   │     │ │     │   |   │     │ │     │   |   │     │ │     │   |
          |   │     │ │     │   |   │     │ │     │   |   │     │ │     │   |
-         |   │     │ │     │   |   │     │ │     │   |   │     │ │     │   |
-50ms - - | - │     │ └—————┘ - | - └—————┘ │     │ - | - └—————┘ │     │ - |
-51ms - - | - └—————┘ - - - - - | - - - - - └—————┘ - |           │     │   |
-         |                     |                     |           │     │   |    
-         |                     |                     |           │     │   |    
-         |                     |                     |           │     │   |    
-         |                     |                     |           │     │   |    
-200ms  - | - - - - - - - - - - | - - - - - - - - - - | - - - - - └—————┘ - |    
+49ms - - | - │     │ └—————┘ - |   │     │ │     │   |   │     │ │     │   |
+50ms - - | - └—————┘ - - - - - | - └—————┘ │     │ - | - └—————┘ │     │ - |
+51ms - - | - - - - - - - - - - | - - - - - └—————┘ - |           │     │   |
+         |                     |                     |           │     │   |
+         |                     |                     |           │     │   |
+         |                     |                     |           │     │   |
+         |                     |                     |           │     │   |
+200ms  - | - - - - - - - - - - | - - - - - - - - - - | - - - - - └—————┘ - |  
 ```
 
 
