@@ -174,7 +174,7 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
 So, the first press will send `:` and sequential presses will delete just entered symbol and send next
 
 
-## Clumsy symbol change on sequential tapping (same as QMK Tap Dance)
+## Clumsy symbol pick after sequential tapping (same as QMK Tap Dance)
 
 ```c
 void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
