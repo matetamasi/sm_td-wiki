@@ -8,12 +8,12 @@ But you might want to know, how exactly does that works and why pressing and rel
 - `↓macro1` creates first state layer for states stack: [0] = { macro_key = macro1, following_key = NULL, stage = TAP }
 - `↓macro2` saves macro2 as following key for first state: [0] = { macro_key = macro1, following_key = macro2, stage = FOLLOWING_TAP }
 - `↓macro3` changes first state to HOLD, that state send following key tap, so it creates a new state layer, and then new state will register macro3 as following key. So resulting stack will be:
-	[0] = { macro_key = macro1, following_key = macro2, stage = HOLD }
-	[1] = { macro_key = macro2, following_key = macro3, stage = FOLLOWING_TAP }
+	* [0] = { macro_key = macro1, following_key = macro2, stage = HOLD }
+	* [1] = { macro_key = macro2, following_key = macro3, stage = FOLLOWING_TAP }
 - `↓macro4` is bypassed with first state (because it is in HOLD stage) and handled with second state. Same as previous press, it changes second state to HOLD, that state send following key tap (macro3), so it creates a new state layer, and then new state will register macro4 as following key. So resulting stack will be:
-	[0] = { macro_key = macro1, following_key = macro2, stage = HOLD }
-	[1] = { macro_key = macro2, following_key = macro3, stage = HOLD }
-	[1] = { macro_key = macro3, following_key = macro4, stage = FOLLOWING_TAP }
+	* [0] = { macro_key = macro1, following_key = macro2, stage = HOLD }
+	* [1] = { macro_key = macro2, following_key = macro3, stage = HOLD }
+	* [2] = { macro_key = macro3, following_key = macro4, stage = FOLLOWING_TAP }
 
 As user will release keys, states stack will shrink back to 0 size
 		
