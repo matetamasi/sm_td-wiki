@@ -32,7 +32,7 @@ Each of them has coresponding default global value:
 
 You may override that global terms in your `config.h` file, eg `#define SMTD_GLOBAL_RELEASE_TERM 75`. 
 
-There is also a function `uint32_t get_smtd_timeout_default(smtd_timeout timeout)` to get current default value for given smtd_timeout.
+There is also a handy function `uint32_t get_smtd_timeout_default(smtd_timeout timeout)` to get current default value for given smtd_timeout.
 
 And you may override timeouts for a single key with function `uint32_t get_smtd_timeout(uint16_t keycode, smtd_timeout timeout)`
 
@@ -45,7 +45,7 @@ uint32_t get_smtd_timeout(uint16_t keycode, smtd_timeout timeout) {
             if (timeout == SMTD_TIMEOUT_TAP) return 300;
     }
 
-    return get_smtd_timeout_default(keycode, timeout);
+    return get_smtd_timeout_default(timeout);
 }
 ```
 
