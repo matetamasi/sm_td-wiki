@@ -9,7 +9,7 @@ There are only two execution flow for `on_smtd_action` function:
 
 You will never get a tap between hold and release or miss a touch action. So be sure, once touch has been executed, it will be finished with tap or hold+release.
 
-Best structure to describe macros behaviours is nested switch-cases. Top level for choosing macro key, second for action, third (optional) for tap_count. For example:
+Possible structure to describe macros behaviours is nested switch-cases. Top level for choosing macro key, second for action, third (optional) for tap_count. For example:
 
 
 ```c
