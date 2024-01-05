@@ -10,7 +10,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 ```
 4. Add some custom keycodes to your `keymaps`, so sm_td library can use them without conflicts
-5. Declare variable `smtd_states` your custom keycodes for sm_td library like this:
+5. Declare variable `smtd_states` your custom keycodes and variable `smtd_states_size` for sm_td library like this:
 ```c
 smtd_state smtd_states[] = {
     SMTD(CUSTOM_KEYCODE_1),
@@ -60,3 +60,9 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
     } // end of switch (keycode)
 } // end of on_smtd_action function
 ```
+
+7. (optional) Add global configuration 
+See next chapter.
+
+8. (optional) Add configuration per key
+See next chapter.
