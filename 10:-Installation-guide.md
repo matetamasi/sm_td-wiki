@@ -62,7 +62,9 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
 ```
 
 7. (optional) Add global configuration 
+
 See next chapter.
 
 8. (optional) Add configuration per key
+
 See next chapter.
