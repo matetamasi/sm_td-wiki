@@ -1,9 +1,14 @@
-This is a user library for QMK with custom implementations of Tap Dance functions. 
-It offers smooth, fast and reliable tap dance functions for your keyboard.
-Base functions are:
-- better tap+tap vs hold+tap interpretation with two different keys
-- better multi-tap and hold (and tap again then) interpretation of the same key
-- more reactive response on multiple taps (and holds)
+---
+last_updated: 2024-08-25
+lib_version: 0.4.0
+---
+
+This is the `SM Tap Dance` (`sm_td` or `smtd` for short) user library for QMK.
+The main goal of this library is to ultimately fix the Home Row Mods (HRM) and Tap Dance problems in QMK.
+The basic features of this library are:
+- Human-friendly tap+tap vs. hold+tap interpretation. Especially useful for `LT()` and `MT()` macros.
+- Better multi-tap and hold (and then tap again) interpretation of the same key
+- Reactive response to multiple taps (and holds)
 
 This library is created because standard Tap Dance library in QMK and MT/ LT functions are not responsive enough.
 This standard libraries you sometimes have to wait to make sure that QMK handles your press as hold, sometimes there are unexpected interpretations, sometimes you are forced to pay too much attention on how to release keys. That irritated me much, so I've built custom users library to overcome that problems.
