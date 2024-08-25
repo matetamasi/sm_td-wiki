@@ -1,9 +1,9 @@
 <details>
-<summary>Meta</summary>
-```
-// page_updated: 2024-08-25
-// lib_version: 0.4.0
-```
+  <summary>Meta</summary>
+  ```
+  // page_updated: 2024-08-25
+  // lib_version: 0.4.0
+  ```
 </details>
 
 This is the `SM Tap Dance` (`sm_td` or `smtd` for short) user library for QMK.
